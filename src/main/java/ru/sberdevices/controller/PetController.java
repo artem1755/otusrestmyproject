@@ -1,14 +1,13 @@
 package ru.sberdevices.controller;
 
+import static ru.sberdevices.common.Config.PET_ENDPOINT;
+import static ru.sberdevices.common.Config.UPLOADIMAGE_ENDPOINT;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import ru.sberdevices.client.ApiClient;
 import ru.sberdevices.dto.AddPetDTO;
-
 import java.io.File;
-
-import static ru.sberdevices.common.Config.PET_ENDPOINT;
-import static ru.sberdevices.common.Config.UPLOADIMAGE_ENDPOINT;
 
 public class PetController {
   private ApiClient apiClient;

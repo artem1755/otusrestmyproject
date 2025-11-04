@@ -1,21 +1,21 @@
 package ru.sberdevices.services;
 
+import static io.restassured.RestAssured.given;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import ru.sberdevices.dto.AddPetDTO;
 import ru.sberdevices.utills.PropertyLoader;
 
-import static io.restassured.RestAssured.given;
-
 public class PetstoreApi {
   private RequestSpecification spec;
-  private static final String baseUri = PropertyLoader.getBaseUrl();
+  private static final String BASE_URL = PropertyLoader.getBaseUrl();
   public static final String USER = "/pet";
 
   public PetstoreApi(){
     spec = given()
-            .baseUri(baseUri)
+            .baseUri(BASE_URL)
             .contentType(ContentType.JSON)
             .log().all();
   }

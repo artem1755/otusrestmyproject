@@ -1,7 +1,6 @@
 package ru.sberdevices.factory.pet;
 
 import ru.sberdevices.dto.AddPetDTO;
-
 import java.util.List;
 
 public class PetDataFactory {
