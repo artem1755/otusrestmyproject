@@ -1,4 +1,4 @@
-package ru.sberdevices;
+package ru.sberdevices.client;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;

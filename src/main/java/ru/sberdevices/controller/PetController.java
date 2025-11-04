@@ -1,9 +1,9 @@
-package ru.sberdevices;
+package ru.sberdevices.controller;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import ru.sberdevices.client.ApiClient;
 import ru.sberdevices.dto.AddPetDTO;
-import ru.sberdevices.dto.AddPetResponseDTO;
 
 import java.io.File;
 
