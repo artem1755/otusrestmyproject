@@ -1,5 +1,6 @@
 package ru.sberdevices;
 
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import org.assertj.core.api.Assertions;
 
@@ -23,7 +24,7 @@ public class ApiAssertions {
   }
 
   public ApiAssertions matchesSchema(String schemaPath) {
-    response.then().body(io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath(schemaPath));
+    response.then().body(JsonSchemaValidator.matchesJsonSchemaInClasspath(schemaPath));
     return this;
   }
 

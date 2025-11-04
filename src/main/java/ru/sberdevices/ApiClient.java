@@ -3,7 +3,6 @@ package ru.sberdevices;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import ru.sberdevices.utills.PropertyLoader;
@@ -15,6 +14,10 @@ public class ApiClient {
     private ApiClient(Builder builder) {
 
         this.requestSpec = builder.requestSpecBuilder.build();
+    }
+
+    public RequestSpecification getRequestSpec() {
+        return this.requestSpec;
     }
 
     public static class Builder {
@@ -81,25 +84,6 @@ public class ApiClient {
 
         Response response = spec.request(method, endpoint);
         response.then().log().all();
-
-        return response;
-    }
-
-    public Response sendRequest(String method, String endpoint, Object body, String schemaPath) {
-        RequestSpecification spec = RestAssured.given().spec(requestSpec).log().all();
-
-        if (body != null) {
-            spec.body(body).contentType(ContentType.JSON);
-        }
-
-        Response response = spec.request(method, endpoint);
-        response.then().log().all();
-
-        if (schemaPath != null) {
-            response.then()
-                    .assertThat()
-                    .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(schemaPath));
-        }
 
         return response;
     }

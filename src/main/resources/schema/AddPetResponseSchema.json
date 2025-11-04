@@ -12,7 +12,8 @@
         "id": { "type": "integer" },
         "name": { "type": "string" }
       },
-      "required": ["id", "name"]
+      "required": ["id", "name"],
+      "additionalItems": false
     },
     "name": {
       "type": "string"
@@ -25,12 +26,14 @@
           "id": { "type": "integer" },
           "name": { "type": "string" }
         },
-        "required": ["id", "name"]
+        "required": ["id", "name"],
+        "additionalItems": false
       }
     },
     "status": {
       "type": "string"
     }
   },
-  "required": ["id", "category", "name", "tags", "status"]
+  "required": ["id", "category", "name", "tags", "status"],
+  "additionalItems": false
 }
