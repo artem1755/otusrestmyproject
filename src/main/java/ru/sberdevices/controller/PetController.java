@@ -1,7 +1,6 @@
 package ru.sberdevices.controller;
 
-import static ru.sberdevices.common.Config.PET_ENDPOINT;
-import static ru.sberdevices.common.Config.UPLOADIMAGE_ENDPOINT;
+import static ru.sberdevices.common.Config.*;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -19,6 +18,14 @@ public class PetController {
   public Response addPet(AddPetDTO body){
     ApiClient apiClient = new ApiClient.Builder().build();
     return apiClient.sendRequest("POST", PET_ENDPOINT, body);
+  }
+
+  public Response getPetById(long id){
+    ApiClient apiClient = new ApiClient.Builder()
+            .addPathParam("petId", String.valueOf(id))
+            .build();
+
+    return apiClient.sendRequest("GET", PET_ENDPOINT + GET_PET_ENDPOINT, null);
   }
 
   public Response uploadImage(long petId, String additionalMetadata, File file) {

@@ -77,11 +77,11 @@
         <version>${surefire.version}</version>
         <configuration>
           <systemPropertyVariables>
-            <base.url>https://otus.ru</base.url>
             <waiter.timeout>10</waiter.timeout>
           </systemPropertyVariables>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -100,6 +100,7 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>

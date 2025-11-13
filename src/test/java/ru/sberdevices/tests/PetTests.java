@@ -7,6 +7,7 @@ import ru.sberdevices.assertions.ApiAssertions;
 import ru.sberdevices.controller.PetController;
 import ru.sberdevices.dto.AddImageToThePetDTO;
 import ru.sberdevices.dto.AddPetResponseDTO;
+import ru.sberdevices.dto.GetPetByIdResponseDTO;
 import ru.sberdevices.factory.pet.PetDataFactory;
 import java.io.File;
 
@@ -20,23 +21,34 @@ public class PetTests {
   public void addNewPetTest(){
     PetController pc = new PetController();
     String name = "Fox";
+    String status = "available";
 
-    Response response = pc.addPet(PetDataFactory.createDefaultPetBody(name));
+    Response addPetResponse = pc.addPet(PetDataFactory.createDefaultPetBody(name));
 
-    ApiAssertions.assertThat(response)
+    ApiAssertions.assertThat(addPetResponse)
             .hasStatusCode(200)
             .matchesSchema("schema/AddPetResponseSchema.json");
 
-    AddPetResponseDTO responseBody = response.as(AddPetResponseDTO.class);
-
+    AddPetResponseDTO responseBody = addPetResponse.as(AddPetResponseDTO.class);
     Assertions.assertAll(
             () -> Assertions.assertEquals(name,responseBody.getName())
+    );
+
+    int petId = responseBody.getId();
+    Response getPetResponse = pc.getPetById(petId);
+    ApiAssertions.assertThat(getPetResponse)
+            .hasStatusCode(200);
+
+    GetPetByIdResponseDTO responseBodyGetPetById = getPetResponse.as(GetPetByIdResponseDTO.class);
+    Assertions.assertAll(
+            () -> Assertions.assertEquals(name,responseBodyGetPetById.getName()),
+            () -> Assertions.assertEquals(status,responseBodyGetPetById.getStatus())
     );
   }
 
 
   /**
-   * Тест проверяет загрузку изображения чущности pet:
+   * Тест проверяет загрузку изображения сущности pet:
    *  Статус-код, поле type
    * */
   @Test

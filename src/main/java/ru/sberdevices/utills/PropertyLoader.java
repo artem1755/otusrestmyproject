@@ -20,10 +20,7 @@ public class PropertyLoader {
     }
   }
 
-  private PropertyLoader() {
-  }
-
   public static String getBaseUrl() {
-    return PROPERTIES.getProperty("base.url");
+    return System.getProperty("base.url", PROPERTIES.getProperty("base.url"));
   }
 }
